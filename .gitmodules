@@ -1,3 +1,7 @@
 [submodule "board/weatherstation/rootfs_overlay/root/sht31-python"]
 	path = board/weatherstation/rootfs_overlay/root/sht31-python
 	url = https://github.com/prdktntwcklr/sht31-python
+[submodule "buildroot"]
+	path = buildroot
+	url = git://git.buildroot.net/buildroot
+	branch = 2023.08.x
