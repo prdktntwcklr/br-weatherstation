@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_SHT31
+	bool "python-sht31"
+	help
+	  Python library for the SHT31 temperature and humidity
+	  sensor.
+
+	  https://github.com/prdktntwcklr/python-sht31

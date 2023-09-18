@@ -2,6 +2,3 @@
 	path = buildroot
 	url = git://git.buildroot.net/buildroot
 	branch = 2023.08.x
-[submodule "buildroot-external/board/weatherstation/rootfs_overlay/root/python-sht31"]
-	path = buildroot-external/board/weatherstation/rootfs_overlay/root/python-sht31
-	url = https://github.com/prdktntwcklr/python-sht31.git
