@@ -8,5 +8,5 @@ When building the system for the first time, the BR2_EXTERNAL variable needs to 
 
 ```
 cd buildroot
-make BR2_EXTERNAL=.. weatherstation_defconfig
+make BR2_EXTERNAL=../buildroot-external weatherstation_defconfig
 ```
