@@ -1,0 +1,12 @@
+[Unit]
+Description=Gunicorn instance to serve application
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/srv/www/web-app
+ExecStart=gunicorn --bind 0.0.0.0:8000 weatherman:'create_app()'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
