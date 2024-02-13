@@ -8,6 +8,7 @@ import sys
 
 from sht31 import sht31
 
+# smbus only exists on RaspberryPi
 try:
     import smbus
     smbus_exists = True
@@ -18,25 +19,10 @@ except ImportError:
 
 class Database:
     def __init__(self, filename):
-        # need to check if file already exists first
-        # sqlite3.connect creates new file automatically
-        newDb = not os.path.exists(filename)
-
-        connection = sqlite3.connect(filename)
-        cursor = connection.cursor()
-
-        if newDb:
-            print(f"Database {filename} does not exist, creating new table...")
-
-            createTable = '''CREATE TABLE database (
-                time TIMESTAMP,
-                temperature REAL,
-                humidity REAL);'''
-            cursor.execute(createTable)
-
+        # database file is created by web app
         self.filename = filename
-        self.connection = connection
-        self.cursor = cursor
+        self.connection = sqlite3.connect(filename)
+        self.cursor = self.connection.cursor()
 
     def insert(self, data):
         print(f"Inserting data into {self.filename}: {data}")
@@ -82,6 +68,7 @@ class Sensor:
                 curr_temp = -99.99
                 curr_humi = -99.99
         else:
+            # no sensor available, use random values
             curr_temp = random.uniform(-10, 40)
             curr_humi = random.uniform(0, 100)
 
@@ -91,6 +78,7 @@ class Sensor:
 def get_formatted_datetime(date_format="%Y-%m-%dT%H:%M+00:00"):
     now = datetime.datetime.now()
 
+    # TODO: should be able to deal with different timezones
     return now.strftime(date_format)
 
 
